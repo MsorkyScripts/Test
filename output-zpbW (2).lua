@@ -36,40 +36,4 @@ local decalsyeeted = true
 				e.Enabled = false
 			end
 		end
-		-- < Services > --
-		lighting = game:FindService("Lighting") or game:GetService("Lighting")
-		networkSettings = settings().Network
-		renderSettings = settings().Rendering
-		gameSettings = settings()["Game Options"]
-		userGameSettings = UserSettings():FindService("UserGameSettings") or UserSettings():GetService("UserGameSettings")
-		-- < Definitions > --
-		lagConfiguration = {
-			-- FPS increasing
-			qualityLevel = Enum.QualityLevel.Level01; -- Up to Level21
-			savedQualityLevel = Enum.SavedQualitySetting.QualityLevel1; -- Up to QualityLevel10
-			videoQualitySetting = Enum.VideoQualitySettings.LowResolution; -- Gives 15/20 additional FPS, Up to HighResolution
-			eagerBulkExecution = false; -- Disables unlimited budget for rendering
-			globalShadows = false; -- Disables shadows
-			-- Lag decreasing (just in case!)
-			incommingReplicationLag = -1000;
-			-- funny thing because why not
-			hasEverUsedVR = true
-		}
-
-		local set_hidden_property = sethiddenproperty or set_hidden_prop
-
-		function boostAttempt()
-			pcall(function() set_hidden_property(lighting, "Technology", Enum.Technology.Compatibility) end)
-			-- FPS boost
-			renderSettings.QualityLevel = lagConfiguration["qualityLevel"]
-			userGameSettings.SavedQualityLevel = lagConfiguration["savedQualityLevel"]
-			gameSettings.VideoQuality = lagConfiguration["videoQualitySetting"]
-			renderSettings.EagerBulkExecution = lagConfiguration["eagerBulkExecution"]
-			lighting.GlobalShadows = lagConfiguration["globalShadows"]
-			-- Decreasing lag (just in case!)
-			networkSettings.IncommingReplicationLag = lagConfiguration["incommingReplicationLag"]
-			-- funny thing
-			userGameSettings.HasEverUsedVR = lagConfiguration["hasEverUsedVR"]
-		end
-
-		boostAttempt()
+		
